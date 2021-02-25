@@ -71,7 +71,7 @@ def leg():
             print("You didn't roll one, try again.")
 
 def beetle():
-    result = 6
+    result = random.choice(dice)
     rotation = {1: body, 2: head, 3: antennae, 4: eye, 5: mouth, 6: leg}
    
     if result == 1:
@@ -95,9 +95,8 @@ def beetle():
             rotation[5]()
             
     if result == 6: #6 legs required
-        if dice_order[6] not in player:
-            if player.count("leg") < 6:
-                rotation[6]()
+        if player.count("leg") < 6:
+            rotation[6]()
     print("Dice: ", result)
     print("Beetle: ", player)
 
