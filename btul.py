@@ -38,7 +38,7 @@ def antennae():
     result = 3
     if result in dice_order:
         if result == 3:
-            player.insert(2, dice_order[result])
+            player.append(dice_order[result])
         else:
             print("Dice: ", result)
             print("You didn't roll one, try again.")
@@ -76,29 +76,33 @@ def beetle():
    
     if result == 1:
        if dice_order[1] not in player: #1 body required
-           rotation[1]()
+            rotation[1]()
 
     if result == 2:
-       if dice_order[2] not in player:  #1 head required
-           rotation[2]()
-   
-    if result == 3:
-       if dice_order[3] not in player: #2 antennas required
-           rotation[3]()
+       if dice_order[1] in player and dice_order[2] not in player:  #1 head required
+            rotation[2]()
+           
+    if result == 3:#2 antennas required
+       if dice_order[1 and 2] in player and dice_order[3] not in player: 
+           if player.count("antennae") < 2:
+               rotation[3]()
 
     if result == 4:
-        if dice_order[4] not in player: #2 eyes required
+        if dice_order[1 and 2] in player and dice_order[4] not in player: #2 eyes required
             rotation[4]()
     
     if result == 5: 
-        if dice_order[5] not in player: #1 mouth required
-            rotation[5]()
+        if dice_order[1 and 2] in player and [5] not in player: #1 mouth required
+            if player.count("mouth") < 1:
+                rotation[5]()
             
     if result == 6: #6 legs required
-        if player.count("leg") < 6:
-            rotation[6]()
-    print("Dice: ", result)
-    print("Beetle: ", player)
+        if dice_order[1] in player:
+            if player.count("leg") < 6:
+                rotation[6]()
+
+    print("\nDice: ", result, "\n")
+    print("Beetle: ", player, "\n")
 
 beetle()
    
