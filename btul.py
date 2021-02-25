@@ -14,6 +14,7 @@ dice_order = {1: "body", 2:"head", 3: "antennae", 4: "eye", 5: "mouth", 6: "leg"
 player = []
 
 def body():
+    result = random.choice(dice)
     if result in dice_order:
         if result == 1:
             player.append(dice_order[result])
@@ -25,6 +26,7 @@ def body():
 
 
 def head():
+    result = random.choice(dice)
     if dice_order[1] in player:
         if result in dice_order:
             if result == 2 or result == 6:
@@ -36,6 +38,7 @@ def head():
             print("You didn't roll two, try again.")
 
 def head_features():
+    result = random.choice(dice)
     if dice_order[1 and 2] in player:
         if result in dice_order:
             if result == 3 or result == 4 or result == 5 or result == 6:
