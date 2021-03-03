@@ -82,7 +82,7 @@ def beetle():
         print("Beetle: ", player, "\n")
         print("Congratulations, you won!\n")
         sleep(0.5)
-        print("Your final body part was:", dice_order[result], "\n")
+        print("Your winning body part was:", dice_order[result], "\n")
         sleep(0.5)
         print("It took you", dice_counter, "dice rolls to finish the game!\n")
         sleep(0.5)
