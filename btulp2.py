@@ -8,13 +8,16 @@ Created on Mon Feb 22 16:31:12 2021
 #result is the rolled dice
 
 import random
+import time
 from time import sleep
+
+start_time = time.time()
 
 dice = (1, 2, 3, 4, 5, 6)
 
 dice_order = {1: "Body", 2:"Head", 3: "Antennae", 4: "Eye", 5: "Mouth", 6: "Leg"}
 
-player = []
+player = [] 
 dice_counter = 0
 
 print(""""Welcome to Beetle! Here are the rules: The aim is to collect all the body parts of a beetle. A dice roll of 1 gives a beetle body, 2 gives a head, 3 gives an antenna, 4 gives an eye, 5 gives a mouth, and 6 gives a leg. 
@@ -61,24 +64,29 @@ def leg():
     if result == 6:
         if result in dice_order:
             player.append(dice_order[result])
+            
 
-def beetle():
+
+def beetle():        
     global dice_counter
-    #global player
     
     input() 
+        
     result = random.choice(dice)
     dice_counter += 1
     player.sort()
     rotation = {1: body, 2: head, 3: antennae, 4: eye, 5: mouth, 6: leg}
     
     if len(player) == 13:
+        end_time = time.time()
         print("Beetle: ", player, "\n")
         print("Congratulations, you won!\n")
         sleep(0.5)
         print("Your final body part was:", dice_order[result], "\n")
         sleep(0.5)
-        print("It took you", dice_counter, "dice rolls to finish the game!")
+        print("It took you", dice_counter, "dice rolls to finish the game!\n")
+        sleep(0.5)
+        print("Time Elapsed: ", round(end_time - start_time), "Seconds")
         sleep(1)
         return
     
