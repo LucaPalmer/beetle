@@ -17,19 +17,7 @@ dice = (1, 2, 3, 4, 5, 6)
 
 dice_order = {1: "Body", 2:"Head", 3: "Antennae", 4: "Eye", 5: "Mouth", 6: "Leg"}
 
-player = ['Antennae',
- 'Antennae',
- 'Body',
- 'Eye',
- 'Eye',
- 'Head',
- 'Leg',
- 'Leg',
- 'Leg',
- 'Leg',
- 'Leg',
- 'Leg',
- 'Mouth']
+player = []
 player_2 = []
 
 dice_counter = 0
