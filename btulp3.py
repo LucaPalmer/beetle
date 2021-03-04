@@ -5,24 +5,17 @@ Created on Wed Mar  3 15:36:56 2021
 
 @author: luca
 """
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Feb 22 16:31:12 2021
-
-@author: luca
-"""
-#result is the rolled dice
 
 import random
 import time
+import rich
+
 from time import sleep
+from rich import print
 
 dice = (1, 2, 3, 4, 5, 6)
-#dice_2 = (1, 2, 3, 4, 5, 6)
 
 dice_order = {1: "Body", 2:"Head", 3: "Antennae", 4: "Eye", 5: "Mouth", 6: "Leg"}
-#dice_order_2 = {1: "Body", 2:"Head", 3: "Antennae", 4: "Eye", 5: "Mouth", 6: "Leg"}
 
 player = []
 player_2 = [] 
@@ -120,6 +113,8 @@ start_time = time.time()
 
 def beetle():        
     global dice_counter
+    global print
+    
     result = random.choice(dice)
     
     dice_counter += 1
@@ -129,8 +124,8 @@ def beetle():
     
     if len(player) == 13:
         end_time = time.time()
-        print("Beetle: ", player, "\n")
-        print("Congratulations Player 1, you won!\n")
+        print("[yellow]Beetle (Player 1):[/yellow] ", player, "\n")
+        print("Congratulations [yellow]Player 1[/yellow], you won!\n")
         sleep(0.5)
         print("Your winning body part was:", dice_order[result], "\n")
         sleep(0.5)
@@ -143,11 +138,11 @@ def beetle():
     else:
 
         if result == 1:
-           if dice_order[1] not in player: #1 body required
+           if dice_order[1] not in player:
                 rotation[1]()
 
     if result == 2:
-       if dice_order[1] in player and dice_order[2] not in player:  #1 head required
+       if dice_order[1] in player and dice_order[2] not in player:
             rotation[2]()
            
     if result == 3:#2 antennas required
@@ -156,29 +151,30 @@ def beetle():
                rotation[3]()
 
     if result == 4:
-        if dice_order[1 and 2] in player: #2 eyes required
+        if dice_order[1 and 2] in player:
             if player.count("Eye") < 2:    
                 rotation[4]()
     
     if result == 5: 
-        if dice_order[1 and 2] in player and [5] not in player: #1 mouth required
+        if dice_order[1 and 2] in player and [5] not in player:
             if player.count("Mouth") < 1:
                 rotation[5]()
             
-    if result == 6: #6 legs required
+    if result == 6:
         if dice_order[1] in player:
             if player.count("Leg") < 6:
                 rotation[6]()
                 
-    print("Beetle: ", player, "\n")
-    print("\nDice: ", result, "| You gained: ", dice_order[result], "\n")
-    input("Player 2! Press Enter to Roll!")
-    print("\n--------------------------\n")
-    #sleep(0.7)
+    print("[yellow]Beetle (Player 1):[/yellow] ", player, "\n")
+    print("\nDice: ", result, "| You rolled: ", dice_order[result], "\n")
+    print("[purple]Player 2! Press Enter to Roll![/purple]")
+    input("\n--------------------------\n")
+    sleep(0.4)
     beetle_2()
     
 def beetle_2():
     global dice_counter_2
+    global print
     
     result_2 = random.choice(dice)
     dice_counter_2 += 1
@@ -188,8 +184,8 @@ def beetle_2():
         
     if len(player_2) == 13:
         end_time = time.time()
-        print("Beetle 2: ", player_2, "\n")
-        print("Congratulations Player 2, you won!\n")
+        print("[purple]Beetle (Player 2):[/purple] ", player_2, "\n")
+        print("[purple]Congratulations Player 2, you won![/purple]\n")
         sleep(0.5)
         print("Your winning body part was:", dice_order[result_2], "\n")
         sleep(0.5)
@@ -200,41 +196,40 @@ def beetle_2():
         return
     
     if result_2 == 1:
-           #if dice_order[1] in player:
-               if dice_order[1] not in player_2: #1 body required
-                   rotation[1]()
+        if dice_order[1] not in player_2: 
+            rotation[1]()
 
     if result_2 == 2:
        if dice_order[1] in player_2:
-           if dice_order[2] not in player_2:  #1 head required
+           if dice_order[2] not in player_2:
                rotation[2]()
            
-    if result_2 == 3:#2 antennas required
+    if result_2 == 3:
        if dice_order[1 and 2] in player_2: 
            if player_2.count("Antennae") < 2:
                rotation[3]()
 
     if result_2 == 4:
-        if dice_order[1 and 2] in player_2: #2 eyes required
+        if dice_order[1 and 2] in player_2:
             if player_2.count("Eye") < 2:    
                     rotation[4]()
     
     if result_2 == 5: 
         if dice_order[1 and 2] in player and player_2: 
-            if dice_order[5] not in player_2: #1 mouth required
+            if dice_order[5] not in player_2:
                 if player_2.count("Mouth") < 1:
                     rotation[5]()
             
-    if result_2 == 6: #6 legs required
+    if result_2 == 6:
         if dice_order[1] in player_2:
              if player_2.count("Leg") < 6:
                 rotation[6]()
                 
-    print("Beetle 2: ", player_2, "\n")
-    print("\nDice: ", result_2, "| You gained: ", dice_order[result_2], "\n")
-    input("Player 1! Press Enter to Roll!")
-    print("\n--------------------------\n")
-    #sleep(0.7)
+    print("[purple]Beetle (Player 2):[/purple] ", player_2, "\n")
+    print("\nDice: ", result_2, "| You rolled: ", dice_order[result_2], "\n")
+    print("[yellow]Player 1! Press Enter to Roll![/yellow]")
+    input("\n--------------------------\n")
+    sleep(0.4)
     beetle()
     
 beetle()
