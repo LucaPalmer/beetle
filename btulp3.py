@@ -18,8 +18,6 @@ import random
 import time
 from time import sleep
 
-start_time = time.time()
-
 dice = (1, 2, 3, 4, 5, 6)
 #dice_2 = (1, 2, 3, 4, 5, 6)
 
@@ -27,9 +25,10 @@ dice_order = {1: "Body", 2:"Head", 3: "Antennae", 4: "Eye", 5: "Mouth", 6: "Leg"
 #dice_order_2 = {1: "Body", 2:"Head", 3: "Antennae", 4: "Eye", 5: "Mouth", 6: "Leg"}
 
 player = []
-player_2 = ['Body']
+player_2 = [] 
  
 dice_counter = 0
+dice_counter_2 = 0
 
 result = 0
 result_2 = 0
@@ -77,7 +76,7 @@ def antennae_2():
     result_2 = 3
     if result_2 in dice_order:
         if result_2 == 3:
-            player.append(dice_order[result_2])
+            player_2.append(dice_order[result_2])
 
 def eye():
     result = 4
@@ -89,7 +88,7 @@ def eye_2():
     result_2 = 4
     if result_2 in dice_order:
         if result_2 == 4:
-            player.append(dice_order[result_2])
+            player_2.append(dice_order[result_2])
             
 def mouth():
     result = 5
@@ -101,7 +100,7 @@ def mouth_2():
     result_2 = 5
     if result_2 in dice_order:
         if result_2 == 5:
-            player.append(dice_order[result_2])
+            player_2.append(dice_order[result_2])
 
 def leg():
     result = 6
@@ -117,6 +116,8 @@ def leg_2():
 
 input()            
 
+start_time = time.time()
+
 def beetle():        
     global dice_counter
     result = random.choice(dice)
@@ -129,7 +130,7 @@ def beetle():
     if len(player) == 13:
         end_time = time.time()
         print("Beetle: ", player, "\n")
-        print("Congratulations, you won!\n")
+        print("Congratulations Player 1, you won!\n")
         sleep(0.5)
         print("Your winning body part was:", dice_order[result], "\n")
         sleep(0.5)
@@ -171,17 +172,32 @@ def beetle():
                 
     print("Beetle: ", player, "\n")
     print("\nDice: ", result, "| You gained: ", dice_order[result], "\n")
-    input("Press Enter to Roll Again!")
+    input("Player 2! Press Enter to Roll!")
     print("\n--------------------------\n")
     #sleep(0.7)
     beetle_2()
     
 def beetle_2():
-    result_2 = 2
-    #dice_counter += 1
+    global dice_counter_2
+    
+    result_2 = random.choice(dice)
+    dice_counter_2 += 1
     player_2.sort()
     rotation = {1: body_2, 2: head_2, 3: antennae_2, 
                 4: eye_2, 5: mouth_2, 6: leg_2}
+        
+    if len(player_2) == 13:
+        end_time = time.time()
+        print("Beetle 2: ", player_2, "\n")
+        print("Congratulations Player 2, you won!\n")
+        sleep(0.5)
+        print("Your winning body part was:", dice_order[result_2], "\n")
+        sleep(0.5)
+        print("It took you", dice_counter_2, "dice rolls to finish the game!\n")
+        sleep(0.5)
+        print("Time Elapsed: ", round(end_time - start_time), "Seconds")
+        sleep(1)
+        return
     
     if result_2 == 1:
            #if dice_order[1] in player:
@@ -189,19 +205,18 @@ def beetle_2():
                    rotation[1]()
 
     if result_2 == 2:
-       if dice_order[1 and 2] in player and dice_order[1] in player_2:
+       if dice_order[1] in player_2:
            if dice_order[2] not in player_2:  #1 head required
                rotation[2]()
            
     if result_2 == 3:#2 antennas required
-       if dice_order[1 and 2] in player and player_2: 
+       if dice_order[1 and 2] in player_2: 
            if player_2.count("Antennae") < 2:
                rotation[3]()
 
     if result_2 == 4:
-        if dice_order[1 and 2] in player and player_2: #2 eyes required
-            if dice_order[4] not in player_2:   
-                if player_2.count("Eye") < 2:    
+        if dice_order[1 and 2] in player_2: #2 eyes required
+            if player_2.count("Eye") < 2:    
                     rotation[4]()
     
     if result_2 == 5: 
@@ -212,13 +227,12 @@ def beetle_2():
             
     if result_2 == 6: #6 legs required
         if dice_order[1] in player_2:
-         if dice_order[6] not in player_2:
              if player_2.count("Leg") < 6:
                 rotation[6]()
                 
     print("Beetle 2: ", player_2, "\n")
     print("\nDice: ", result_2, "| You gained: ", dice_order[result_2], "\n")
-    input("Press Enter to Roll Again!")
+    input("Player 1! Press Enter to Roll!")
     print("\n--------------------------\n")
     #sleep(0.7)
     beetle()
